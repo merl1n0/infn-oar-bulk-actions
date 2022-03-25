@@ -1,0 +1,54 @@
+---
+
+-
+  title: Phylosophy and cost of the injection system for CARST
+  #file_name: Phylosophy-and-cost-of-the-injection-system-for-CARST_AF_1_AF-09.pdf
+  #file_name: urlencode(title).replace(" ", "-") + files[0]["path"]
+  description: "<p>The general specifications for any synchroton light source injection system are: full Main ring (MR) energy, MR filling time to maximum foreseen current, much shorter than the beam lifetime. (...) Full energy injection guarantees that the problems to arise, in connection with the need for keeping a large number of beam lines independently aligned to very high precision, will be reduced to a minimum.</p>"
+  access_right: open
+  communities:
+   - identifier: infn
+  creators:
+  - name: Tazzari, S.
+  keywords:
+  - ADONE
+  - CARST
+  - Injector systems
+  language: eng
+  license: CC-BY-4.0
+  publication_date: '1986-07-27'
+  upload_type: publication
+  publication_type: proposal
+  files:
+  - path: AF_1/AF-09.pdf
+  
+-
+  title: The AFRODITE booster
+  #file_name: The-AFRODITE-booster
+  description: "<p>The booster ring for the AFRODITE injector chain has been studied to achieve a low emittance (...) accepting an injected beam from a positron linac without an intermediate positron accumulator. The lattice has been designated using the same magnetic elements of the main ring, bearing in mind that substancial cost reduction can be obtained with this approach.</p>"
+  access_right: open
+  communities:
+   - identifier: infn
+  creators:
+  - name: Patteri, P.
+  - name: Tazzioli, F.
+  keywords:
+  - ADONE
+  - AFRODITE
+  - Booster ring
+  language: eng
+  license: CC-BY-4.0
+  publication_date: '1986-06-26'
+  upload_type: publication
+  publication_type: technicalnote
+  files:
+  - path: AF_1/AF-02.pdf
+
+
+
+
+ 
+
+
+
+  
