@@ -111,8 +111,8 @@ except:
 # eliminiamo la sezione files dagli attributi
 del r['files']
 
-data = {'Metadata': r}
-print("metadata: \n", yaml.dump(r))
+data = {'metadata': r}
+print("Metadata: \n", yaml.dump(r))
 
 
 url = f'{deposit_url}/{deposition_id}'
@@ -120,7 +120,10 @@ req = requests.put(url,
                    params=params, data=json.dumps(data),
                    headers=headers)
 
-# req.json()
+if req.status_code != 200:
+    print("Some error occurred", req.json()['message'], req.json()['errors'])
+    exit(-1)
+
 
 # Per pubblicare il record
 #publish_url = f'{deposit_url}/{deposition_id}/actions/publish'
