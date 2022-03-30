@@ -44,18 +44,18 @@ $ pip install -r requirements.txt
 
   ## Usage
   
-  1. (Optional) Load the virtual environment where you set up INFN-OAR-deposit:
+  1. (Optional) Load the virtual environment where you set up infn-oar-deposit:
   ```
   $ source <path_to_infn-oar-deposit>/.oar/bin/activate
   ```
   
-  2. (Optional) Set your OAR_TOKEN env variable (if you don't use the .env file)
+  2. (Optional) Set your OAR_TOKEN env variable (if you don't use the `.env` file)
   
   3. Start the bulk deposit script with:   
   ```
-  $python oar-deposit.py <path_of_the_yml_file> <record_number_to_deposit>
+  $ python oar-deposit.py <path_of_the_yml_file> <record_number_to_deposit>
   ```
-  where <record_number_to_deposit> is the **i-th** records listed in the .YAML file
+  where `<record_number_to_deposit>` is the **i-th** records listed in the .YAML file
 
 
 
