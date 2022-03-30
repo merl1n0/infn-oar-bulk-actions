@@ -3,7 +3,9 @@ import yaml
 import sys
 import urllib.parse
 import json
+import os
 from os.path import exists as file_exists
+from dotenv import load_dotenv
 
 # Choose a target host
 oar_host = "www.openaccessrepository.it"
@@ -11,11 +13,12 @@ cern_host = "sandbox.zenodo.org"
 HOST = oar_host
 
 # Choose a token
-# OAR.it token
-oar_token = "WctVavtQvHXupfUTYSkPaieQgATwbRyvVFO6KnsjsC8JWr9N40IZLIdgbbGQ"
-# Zenodo sandbox token
-cern_token = "XveBvDXazblMrQeoiExquJUKUjP60S5UyQyK4Kj04CnseRwqwvSTYxt90Nw9"
-TOKEN = oar_token
+load_dotenv()  # get environment variables from possible .env file
+TOKEN = os.environ.get("OAR_TOKEN", None)
+
+if not TOKEN:
+    print("Could not find a valid INVENIORDM_TOKEN env variable or .env config file")
+    exit(-1)
 
 params = {'access_token': TOKEN}
 headers = {"Content-Type": "application/json"}
