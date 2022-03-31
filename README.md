@@ -36,6 +36,7 @@ Python3 (and `pip`) should be installed on your machine
    $ source .oar/bin/activate
 
    # Activate the virtual environment (Windows)
+   PS C:> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
    PS C:\> .oar\Scripts\activate.ps1
 
    ```
