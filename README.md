@@ -35,7 +35,7 @@ Python3 (and `pip`) should be installed on your machine
    # Activate the virtual environment (macOS/Linux)
    $ source .oar/bin/activate
 
-   # Activate the virtual environment (Windows)
+   # Activate the virtual environment (Windows PowerShell)
    PS C:> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
    PS C:\> .oar\Scripts\activate.ps1
 
@@ -80,10 +80,10 @@ Python3 (and `pip`) should be installed on your machine
   
   3. Start the bulk deposit script with:   
      ```
-     python oar-deposit.py <path_of_the_yml_file>     <record_number_to_deposit>
+     python oar-deposit.py <path_of_the_yml_file> <record_number_to_deposit>
      ```
      
-     where `<record_number_to_deposit>` is the **i-th** records listed in the .YAML file
+     where `<record_number_to_deposit>` is the **i-th** records listed in the .YAML file. If you don't provide any <record_number_to_deposit> it will use the first record of the .YAML file.
 
 
 
