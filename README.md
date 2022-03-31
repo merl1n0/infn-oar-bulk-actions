@@ -19,7 +19,12 @@ $ git clone https://github.com/acaland/infn-oar-deposit.git
 
   Alternatively you can download the source from https://github.com/acaland/infn-oar-deposit/archive/refs/heads/master.zip
 
-2. `cd infn-oar-deposit`
+2. Using the Terminal app (macOS) or PowerShell (Windows) navigate to the folder where you cloned/unzipeed the source code:
+
+```
+$ cd <path_to_infn-oar-deposit>
+```
+
 3. (Optional) Create a Python virtual environment and activate it. With `venv` for example:
 ```
 $ python3 -m venv .oar

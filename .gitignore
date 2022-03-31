@@ -2,3 +2,6 @@
 .ipynv_checkpoints
 .oar
 .env
+.DS_Store
+AF_1/
+

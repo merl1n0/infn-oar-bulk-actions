@@ -1,0 +1,75 @@
+---
+
+-
+  title: e± Injection systems
+  #file_name: e±-Injection-systems_AF_1_AF-03.pdf
+  #file_name: urlencode(title).replace(" ", "-") + files[0]["path"]
+  description: "<p>Table: LINAC Low energy/high current - High energy/low current.</p>"
+  access_right: open
+  communities:
+   - identifier: infn
+  creators:
+  - name: Tazzari, S.
+  keywords:
+  - ADONE
+  - Injection systems
+  language: eng
+  license: CC-BY-4.0
+  publication_date: '1986-06-27'
+  upload_type: dataset
+  files:
+  - path: AF_1/AF-03.pdf
+  
+-
+  title: Struttura AF11d per AFRODITE
+  #file_name: Struttura-AF11d-per-AFRODITE_AF_1_AF-10.pdf
+  #file_name: urlencode(title).replace(" ", "-") + files[0]["path"]
+  description: "<p>È stata disegnata una struttura uguale alla AF11B eccetto nella lunghezza del drift D4, la quale è stata aumentata di 12 cm, per aggiungere lo spazio necessario alle bobine del magnete e del primo quadrupolo dell'inserzione.</p>"
+  access_right: open
+  communities:
+   - identifier: infn
+  creators:
+  - name: Biscari, C.
+  keywords:
+  - ADONE
+  - AFRODITE
+  language: ita
+  license: CC-BY-4.0
+  publication_date: '1986-09-01'
+  upload_type: publication
+  publication_type: technicalnote
+  files:
+  - path: AF_1/AF-10.pdf
+
+
+-
+  title: Comments on Recirculation scheme as injection chain for AFRODITE
+  #file_name: Comments-on-Recirculation-scheme-as-Injection-chain-for-AFRODITE_AF_1_AF-11.pdf
+  #file_name: urlencode(title).replace(" ", "-") + files[0]["path"]
+  description: "<p>Recently it has been proposed to eliminate from the injection chain of AFRODITE the booster synchroton and to obtain the final energy of the order of 1.5 GeV,  desired for the ring, by recirculation of the positron (or electron) beam few times throught the linac. It was suggested that such solution could be cheaper than a booster synchroton.</p>"
+  access_right: open
+  communities:
+   - identifier: infn
+  creators:
+  - name: Kulinski, S.
+  - name: Tazzioli, F.
+  keywords:
+  - ADONE
+  - AFRODITE
+  - Recirculation schemes
+  language: eng
+  license: CC-BY-4.0
+  publication_date: '1986-09-01'
+  upload_type: publication
+  publication_type: proposal
+  files:
+  - path: AF_1/AF-11.pdf
+
+
+
+
+ 
+
+
+
+  
