@@ -14,7 +14,7 @@ Python3 (and `pip`) should be installed on your machine
 1. Clone this repository into a folder of your local machine:
    
    ```
-   $ git clone https://github.com/acaland/infn-oar-deposit.git
+   git clone https://github.com/acaland/infn-oar-deposit.git
    ```
 
    Alternatively you can download the source from https://github.com/acaland/infn-oar-deposit/archive/refs/heads/master.zip
@@ -22,20 +22,26 @@ Python3 (and `pip`) should be installed on your machine
 2. Using the Terminal app (macOS) or PowerShell (Windows) navigate to the folder where you cloned/unzipped the source code:
 
    ```
-   $ cd <path_to_infn-oar-deposit>
+   cd <path_to_infn-oar-deposit>
    ```
 
 3. (Optional) Create a Python virtual environment and activate it. With `venv` for example:
    
    ```
-   $ python3 -m venv .oar
+   python -m venv .oar
+   
+   # Activate the virtual environment (macOS/Linux)
    $ source .oar/bin/activate
+
+   # Activate the virtual environment (Windows)
+   PS C:\> .oar\Scripts\activate.ps1
+
    ```
 
 4. Install the needed dependencies with:
 
    ```
-   $ pip install -r requirements.txt
+   pip install -r requirements.txt
    ```
 
   5. If you havent' already created a _Personal Access Token_ to access INFN OAR API, go to https://www.openaccessrepository.it/account/settings/applications/ and create a **New Token**. Copy the new token and save it in a safe place as you cannot retrieve it again. 
@@ -54,14 +60,14 @@ Python3 (and `pip`) should be installed on your machine
   
   1. (Optional) Load the virtual environment where you set up infn-oar-deposit:
      ```
-     $ source <path_to_infn-oar-deposit>/.oar/bin/activate
+     source <path_to_infn-oar-deposit>/.oar/bin/activate
      ```
   
   2. (Optional) Set your OAR_TOKEN env variable (if you don't use the `.env` file)
   
   3. Start the bulk deposit script with:   
      ```
-     $ python oar-deposit.py <path_of_the_yml_file>     <record_number_to_deposit>
+     python oar-deposit.py <path_of_the_yml_file>     <record_number_to_deposit>
      ```
      
      where `<record_number_to_deposit>` is the **i-th** records listed in the .YAML file
