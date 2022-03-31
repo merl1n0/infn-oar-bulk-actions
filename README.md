@@ -80,11 +80,18 @@ Python3 (and `pip`) should be installed on your machine
   
   3. Start the bulk deposit script with:   
      ```
-     python oar-deposit.py <path_of_the_yml_file> <record_number_to_deposit>
+     python oar-deposit.py <path_of_the_yml_file> <record_index_to_deposit>
      ```
      
-     where `<record_number_to_deposit>` is the **i-th** records listed in the .YAML file. If you don't provide any <record_number_to_deposit> it will use the first record of the .YAML file.
-
+     where
+     - `<path_of_the_yml_file>` is the full path (absolute or relative) of the `.yml` input file that contains the list of records to deposit
+     - `<record_index_to_deposit>` is the index of a specific record in the input file (the **i-th** records) you want to deposit. The first record as index equals to 0. If you don't provide any <record_index_to_deposit> it will use the first record of the .YAML file.
+     
+     Example:
+     ```
+     python oar-deposit.py adone-prova1.yml 1
+     ```
+     Will deposit the *second* record listed into `adone-prova1.yml`
 
 
 
