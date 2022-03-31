@@ -25,7 +25,7 @@ Python3 (and `pip`) should be installed on your machine
    cd <path_to_infn-oar-deposit>
    ```
 
-   Alternatively you can use Visual Studio Code and it's integrated terminal. In this case you need just to open the folder with the source code. VS Code defaults the terminal to the root of your opened workspace.
+   Alternatively you can use Visual Studio Code and its integrated terminal. In this case you need just to open the folder with the source code. VS Code defaults the terminal to the root of your opened workspace.
 
 3. (Optional) Create a Python virtual environment and activate it. With `venv` for example:
    
@@ -64,12 +64,13 @@ Python3 (and `pip`) should be installed on your machine
 
 
 
-  ## Usage
+  ## 🚀 Usage
   
   1. (Optional) Load the virtual environment where you set up infn-oar-deposit:
      ```
      # macOS/*nix
      $ source <path_to_infn-oar-deposit>/.oar/bin/activate
+     
      # Windows
      PS C:\> .<path_to_infn-oar-deposit>\Scripts\activate.ps1
      ```
