@@ -4,12 +4,12 @@ This command line tool allows to deposit a set of records to the INFN Open Acces
 (to be continued)
 
 
-## 📋 Requirements
+## Requirements
 
 Python3 (and `pip`) should be installed on your machine
 
 
-## Installation
+## 📋 Installation
 
 1. Clone this repository into a folder of your local machine:
    
@@ -24,6 +24,8 @@ Python3 (and `pip`) should be installed on your machine
    ```
    cd <path_to_infn-oar-deposit>
    ```
+
+   Alternatively you can use Visual Studio Code and it's integrated terminal. In this case you need just to open the folder with the source code. VS Code defaults the terminal to the root of your opened workspace.
 
 3. (Optional) Create a Python virtual environment and activate it. With `venv` for example:
    
