@@ -46,23 +46,32 @@ Python3 (and `pip`) should be installed on your machine
    pip install -r requirements.txt
    ```
 
-  5. If you havent' already created a _Personal Access Token_ to access INFN OAR API, go to https://www.openaccessrepository.it/account/settings/applications/ and create a **New Token**. Copy the new token and save it in a safe place as you cannot retrieve it again. 
+  5. If you haven't already created a _Personal Access Token_ to access INFN OAR API, go to https://www.openaccessrepository.it/account/settings/applications/ and create a **New Token**. Copy the new token and save it in a safe place as you cannot retrieve it again. 
    
   6. Create a `.env` file in the same folder as `oar-deposit.py` with the line:
      ```bash
      OAR_TOKEN=<your_personal_token_from_OAR_here>
      ```
-     Alternatively, you can set an environment variable into your system. For example, in macOS/*nix environment:
+     Alternatively, you can set an environment variable into your system. For example, :
 
      ```
+     # on macOS/*nix environment
      $ export OAR_TOKEN=<your_personal_token_from_OAR_here>
+
+     # on Windows
+     PS C:\> $env:OAR_TOKEN="<your_personal_token_from_OAR_here>"
      ```
+
+
 
   ## Usage
   
   1. (Optional) Load the virtual environment where you set up infn-oar-deposit:
      ```
-     source <path_to_infn-oar-deposit>/.oar/bin/activate
+     # macOS/*nix
+     $ source <path_to_infn-oar-deposit>/.oar/bin/activate
+     # Windows
+     PS C:\> .<path_to_infn-oar-deposit>\Scripts\activate.ps1
      ```
   
   2. (Optional) Set your OAR_TOKEN env variable (if you don't use the `.env` file)
