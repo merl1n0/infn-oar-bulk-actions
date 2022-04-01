@@ -35,6 +35,8 @@ try:
         # The FullLoader parameter handles the conversion from YAML
         # scalar values to Python the dictionary format
         records = yaml.load(file, Loader=yaml.FullLoader)
+        yaml_path = os.path.dirname(file.name)
+
 except:
     print("Cannot read ", yaml_file)
     exit(-1)
@@ -57,7 +59,8 @@ else:
 filename = r['title'].replace(' ', '-').lower()
 filename += '_' + r['files'][0]['path'].replace('/', '_')
 filename = urllib.parse.quote(filename)
-path = r['files'][0]['path']
+# relative paths are built starting from the location of the YAML file
+path = yaml_file + r['files'][0]['path']
 print(f"\nUploading '{r['title']}' as {filename}")
 
 
