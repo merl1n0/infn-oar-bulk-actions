@@ -36,6 +36,7 @@ try:
         # scalar values to Python the dictionary format
         records = yaml.load(file, Loader=yaml.FullLoader)
         yaml_path = os.path.dirname(file.name)
+        print("yaml_path", yaml_path)
 
 except:
     print("Cannot read ", yaml_file)
@@ -60,7 +61,7 @@ filename = r['title'].replace(' ', '-').lower()
 filename += '_' + r['files'][0]['path'].replace('/', '_')
 filename = urllib.parse.quote(filename)
 # relative paths are built starting from the location of the YAML file
-path = yaml_file + r['files'][0]['path']
+path = yaml_path + r['files'][0]['path']
 print(f"\nUploading '{r['title']}' as {filename}")
 
 
@@ -118,7 +119,7 @@ except:
 del r['files']
 
 data = {'metadata': r}
-print("Metadata: \n", yaml.dump(r))
+print("\nMetadata:\n\n", yaml.dump(r))
 
 
 url = f'{deposit_url}/{deposition_id}'
@@ -126,9 +127,13 @@ req = requests.put(url,
                    params=params, data=json.dumps(data),
                    headers=headers)
 
+# print(yaml.dump(req.json()))
+
 if req.status_code != 200:
     print("Some error occurred", req.json()['message'], req.json()['errors'])
     exit(-1)
+else:
+    print("Success! Edit at: ", req.json()['links']['html'])
 
 
 # Per pubblicare il record
