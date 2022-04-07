@@ -98,7 +98,7 @@ Python3 (and `pip`) should be installed on your machine
      ```
      python oar-deposit.py adone-prova1.yml 1
      ```
-     Will deposit records starting the *second* to the last one listed on the `adone-prova1.yml`.
+     Will deposit records starting from the *second* to the last one listed in the `adone-prova1.yml`.
 
 
 
