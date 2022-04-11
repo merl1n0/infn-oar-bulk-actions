@@ -156,7 +156,8 @@ for i in range(start_index, end_index + 1):
 
     if req.status_code != 200:
         print("Some error occurred", req.json()
-              ['message'], req.json()['errors'])
+              ['message'])
+        print(req.json()['errors'])
         exit(-1)
     else:
         try:

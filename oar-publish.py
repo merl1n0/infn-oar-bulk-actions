@@ -85,7 +85,8 @@ for i in range(start_index, end_index + 1):
 
     r = records[i]
     print(f"Parsing Record # [{i}] id # {r['id']}")
-    print(f"Title: {r['title']}")
+    if 'title' in r:
+        print(f"Title: {r['title']}")
 
     if 'doi' in r:
         print("Already published! Skip to the next record\n")
