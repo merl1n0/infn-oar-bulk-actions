@@ -84,11 +84,12 @@ elif len(sys.argv) == 4:
 for i in range(start_index, end_index + 1):
 
     r = records[i]
-    print(f"Parsing Record # [{i}]")
+    print(f"Parsing Record # [{i}] id # {r['id']}")
+    print(f"Title: {r['title']}")
 
     # Costruiamo il nome del file su OAR in base al titolo ed al path del record
 
-    filename = r['title'].replace(' ', '-').lower()
+    """ filename = r['title'].replace(' ', '-').lower()
     filename += '_' + r['files'][0]['path'].replace('/', '_')
     filename = urllib.parse.quote(filename)
     # relative paths are built starting from the location of the YAML file
@@ -98,86 +99,69 @@ for i in range(start_index, end_index + 1):
     # Check if file exists
     if not file_exists(path):
         print(f"{path} doesn't exists")
-        exit(-1)
+        exit(-1) """
 
     api = "/api/deposit/depositions"
     deposit_url = f'https://{HOST}{api}'
 
-    req = requests.post(deposit_url, params=params, json={})
+    # req = requests.post(deposit_url, params=params, json={})
     # Headers are not necessary here since "requests" automatically
     # adds "Content-Type: application/json", because we're using
     # the "json=" keyword argument
     # headers=headers,
     # headers=headers)
 
-    if req.status_code != 201:
-        print("Some error occurred")
-        print(req.json())
-        exit(-1)
+    # if req.status_code != 201:
+    #     print("Some error occurred")
+    #     print(req.json())
+    #     exit(-1)
 
-    deposition_id = req.json()['id']
-    reserved_doi = req.json()['metadata']['prereserve_doi']['doi']
+    deposition_id = r['id']
+    # reserved_doi = req.json()['metadata']['prereserve_doi']['doi']
 
-    print(f"Preserved DOI {reserved_doi} for deposition {deposition_id}")
+    # print(f"Preserved DOI {reserved_doi} for deposition {deposition_id}")
 
-    bucket_url = req.json()["links"]["bucket"]
+    # bucket_url = req.json()["links"]["bucket"]
 
-    upload_url = f'{bucket_url}/{filename}'
-    print(f"Upload to '{upload_url}'")
+    # upload_url = f'{bucket_url}/{filename}'
+    # print(f"Upload to '{upload_url}'")
 
     # Let's upload the first file in the files attributes
     # The target URL is a combination of the bucket link with the desired filename
     # seperated by a slash.
-    try:
-        with open(path, "rb") as fp:
-            req = requests.put(
-                upload_url,
-                data=fp,
-                params=params,
-            )
-    except:
-        print("Error trying to read the file from ", path)
-        exit(-1)
+    # try:
+    #     with open(path, "rb") as fp:
+    #         req = requests.put(
+    #             upload_url,
+    #             data=fp,
+    #             params=params,
+    #         )
+    # except:
+    #     print("Error trying to read the file from ", path)
+    #     exit(-1)
 
-    # TODO: controllare se upload termina con successo
+    # # TODO: controllare se upload termina con successo
 
-    # eliminiamo la sezione files dagli attributi
-    del r['files']
+    # # eliminiamo la sezione files dagli attributi
+    # del r['files']
 
-    data = {'metadata': r}
-    # print("\nMetadata:\n\n", yaml.dump(r))
+    # data = {'metadata': r}
+    # # print("\nMetadata:\n\n", yaml.dump(r))
 
     url = f'{deposit_url}/{deposition_id}'
-    req = requests.put(url,
-                       params=params, data=json.dumps(data),
-                       headers=headers)
+    req = requests.delete(url, params=params, headers=headers)
 
+    # print(req.status_code)
     # print(yaml.dump(req.json()))
 
-    if req.status_code != 200:
-        print("Some error occurred", req.json()
-              ['message'], req.json()['errors'])
+    if req.status_code == 410:
+        print(f"Record {deposition_id} already deleted\n")
+    elif req.status_code != 204:
+        print("Some error occurred:", req.json()
+              ['message'])
+        if "errors" in req.json():
+            print("Errors: ", req.json()['errors'])
         exit(-1)
     else:
-        try:
-            with open(yaml_file.replace(".yml", "_out.yml"), "a") as out_file:
-                # The FullLoader parameter handles the conversion from YAML
-                # scalar values to Python the dictionary format
-                resp = req.json()
-                deposit = {'id': resp['id'], 'title': resp['metadata']
-                           ['title'], 'url': resp['links']['html'], 'reserved_doi': reserved_doi}
-
-                out_file.write(yaml.dump([deposit]))
-
-                # yaml_path = os.path.dirname(file.name)
-                # print("yaml_path", yaml_path)
-
-        except:
-            print("Cannot write ", yaml_file)
-            exit(-1)
         print(
-            f"Record # [{i}] deposit complete! Edit at: {req.json()['links']['html']}\n")
-
-    # Per pubblicare il record
-    # publish_url = f'{deposit_url}/{deposition_id}/actions/publish'
-    #req = requests.post(publish_url, params=params )
+            f"Record # [{i}] id {deposition_id} deposit deleted! \n")
