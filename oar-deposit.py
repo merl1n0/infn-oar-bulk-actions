@@ -163,5 +163,5 @@ for i in range(start_index, end_index + 1):
             f"Record # [{i}] deposit complete! Edit at: {req.json()['links']['html']}\n")
 
     # Per pubblicare il record
-    #publish_url = f'{deposit_url}/{deposition_id}/actions/publish'
+    # publish_url = f'{deposit_url}/{deposition_id}/actions/publish'
     #req = requests.post(publish_url, params=params )

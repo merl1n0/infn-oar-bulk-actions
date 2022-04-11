@@ -1,4 +1,4 @@
-# INFN OAR Bulk Deposit
+# INFN OAR Bulk Deposit & Publish
 
 This command line tool allows to deposit a set of records to the INFN Open Access Repository (or any Zenodo based one) from a list of metadata stored in YAML file.
 (to be continued)
