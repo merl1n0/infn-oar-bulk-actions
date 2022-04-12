@@ -23,7 +23,7 @@ Python3 (and `pip`) should be installed on your machine
 1. Clone this repository into a folder of your local machine:
    
    ```
-   git clone https://github.com/acaland/infn-oar-deposit.git
+   git clone https://github.com/acaland/infn-oar-bulk-actions.git
    ```
 
    Alternatively you can download the source from https://github.com/acaland/infn-oar-deposit/archive/refs/heads/master.zip
