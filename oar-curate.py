@@ -15,9 +15,10 @@ HOST = oar_host
 # Choose a token
 load_dotenv()  # get environment variables from possible .env file
 TOKEN = os.environ.get("OAR_TOKEN", None)
+SESSION = os.environ.get("OAR_SESSION", None)
 
-if not TOKEN:
-    print("Could not find a valid OAR_TOKEN env variable or .env config file")
+if not SESSION:
+    print("Could not find a valid OAR_SESSION env variable or .env config file")
     exit(-1)
 
 params = {'access_token': TOKEN}
@@ -25,12 +26,14 @@ headers = {"Content-Type": "application/json"}
 
 
 # Load metadata from YAML file
-if len(sys.argv) < 2:
-    print("\nPlease provide at least a .yml file to read records'metadata from\n")
+if len(sys.argv) < 4:
+    print("\nPlease provide at least a .yml file to read records'metadata from, a <community> identifier and <action> (accept | reject) to issue\n")
     print(
-        f"Syntax: python {sys.argv[0]} <path_of_the_yml_file> [record_start_index] [record_end_index]\n")
+        f"Syntax: python {sys.argv[0]} <path_of_the_yml_file> <community> <action> [record_start_index] [record_end_index]\n")
     exit(-1)
 yaml_file = sys.argv[1]
+COMMUNITY = sys.argv[2]
+ACTION = sys.argv[3]
 
 try:
     with open(yaml_file) as file:
@@ -61,21 +64,21 @@ print(f"Found {record_count} records in {yaml_file}\n")
 
 # per caricare un singolo record usare due volte lo stesso indice
 
-# sys.argv[2]  [record_start_index]
-# sys.argv[3]  [record_end_index]
+# sys.argv[4]  [record_start_index]
+# sys.argv[5]  [record_end_index]
 
 # se non viene passato alcun indice vengono caricati tutti i record
 start_index = 0
 end_index = record_count - 1
 # se viene passato solo indice iniziale (un solo indice) viene caricato dall'i-esimo record alla fine
-if len(sys.argv) == 3:
-    start_index = int(sys.argv[2])
+if len(sys.argv) == 5:
+    start_index = int(sys.argv[4])
     if start_index >= record_count:
         print("<record_start_index> greater than available number of records\n")
         exit(-1)
-elif len(sys.argv) == 4:
-    start_index = int(sys.argv[2])
-    end_index = int(sys.argv[3])
+elif len(sys.argv) == 6:
+    start_index = int(sys.argv[4])
+    end_index = int(sys.argv[5])
     if start_index >= record_count or end_index >= record_count:
         print("<record_start_index> or <record_end_index> greater than available number of records\n")
         exit(-1)
@@ -87,27 +90,6 @@ for i in range(start_index, end_index + 1):
     print(f"Parsing Record # [{i}] id # {r['id']}")
     if 'title' in r:
         print(f"Title: {r['title']}")
-
-    if 'doi' in r:
-        print("Already published! Skip to the next record\n")
-        continue
-
-    # Costruiamo il nome del file su OAR in base al titolo ed al path del record
-
-    """ filename = r['title'].replace(' ', '-').lower()
-    filename += '_' + r['files'][0]['path'].replace('/', '_')
-    filename = urllib.parse.quote(filename)
-    # relative paths are built starting from the location of the YAML file
-    path = yaml_path + r['files'][0]['path']
-    print(f"Uploading '{r['title']}' as {filename}")
-
-    # Check if file exists
-    if not file_exists(path):
-        print(f"{path} doesn't exists")
-        exit(-1) """
-
-    api = "/api/deposit/depositions"
-    deposit_url = f'https://{HOST}{api}'
 
     # req = requests.post(deposit_url, params=params, json={})
     # Headers are not necessary here since "requests" automatically
@@ -121,7 +103,6 @@ for i in range(start_index, end_index + 1):
     #     print(req.json())
     #     exit(-1)
 
-    deposition_id = r['id']
     # reserved_doi = req.json()['metadata']['prereserve_doi']['doi']
 
     # print(f"Preserved DOI {reserved_doi} for deposition {deposition_id}")
@@ -157,12 +138,22 @@ for i in range(start_index, end_index + 1):
     # req = requests.delete(url, params=params, headers=headers)
 
     # Per pubblicare il record
-    publish_url = f'{deposit_url}/{deposition_id}/actions/publish'
-    req = requests.post(publish_url, params=params)
+    #publish_url = f'{deposit_url}/{deposition_id}/actions/publish'
+    curate_id = r['id']
+    data = {'recid': curate_id, 'action': ACTION}
+    api = f"/communities/{COMMUNITY}/curaterecord/"
+    curate_url = f'https://{HOST}{api}'
+
+    session = requests.session()
+    rest_options = {'HttpOnly': True}
+    session.cookies.set("session", SESSION,
+                        domain="www.openaccessrepository.it", path="/", secure=True, rest=rest_options)
+    req = session.post(curate_url, params=params,
+                       headers=headers, data=json.dumps(data))
 
     # print(yaml.dump(req.json()))
 
-    if req.status_code != 202:
+    if req.status_code != 200:
         print("status code: ", req.status_code)
         print("Some error occurred:", req.json()
               ['message'])
@@ -170,19 +161,5 @@ for i in range(start_index, end_index + 1):
             print("Errors: ", req.json()['errors'])
         exit(-1)
     else:
-        try:
-            with open(yaml_file, "w") as out_file:
-                # The FullLoader parameter handles the conversion from YAML
-                # scalar values to Python the dictionary format
-                resp = req.json()
-                records[i]['doi'] = resp['doi']
-                records[i]['doi_url'] = resp['doi_url']
-                records[i]['created'] = resp['created']
-                records[i]['url'] = resp['links']['record_html']
-
-                out_file.write(yaml.dump(records))
-        except:
-            print("Cannot update ", yaml_file)
-            exit(-1)
         print(
-            f"Record # [{i}] id {deposition_id} successfully published! \n")
+            f"Record # [{i}] id {curate_id} successfully {ACTION}ed into {COMMUNITY}! \n")

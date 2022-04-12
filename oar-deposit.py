@@ -17,7 +17,7 @@ load_dotenv()  # get environment variables from possible .env file
 TOKEN = os.environ.get("OAR_TOKEN", None)
 
 if not TOKEN:
-    print("Could not find a valid INVENIORDM_TOKEN env variable or .env config file")
+    print("Could not find a valid OAR_TOKEN env variable or .env config file")
     exit(-1)
 
 params = {'access_token': TOKEN}
