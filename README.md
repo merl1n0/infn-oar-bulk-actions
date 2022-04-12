@@ -1,7 +1,15 @@
-# INFN OAR Bulk Deposit & Publish
+# INFN OAR Bulk Actions
 
-This command line tool allows to deposit a set of records to the INFN Open Access Repository (or any Zenodo based one) from a list of metadata stored in YAML file.
-(to be continued)
+These command line scripts allow to execute a set of actions in bulk against the [INFN Open Access Repository](https://www.openaccessrepository)  (or any [Zenodo](https://zenodo.org) based one) from a list of records stored in a [YAML](https://yaml.org) file. Currently the supported actions are:
+
+- deposit - deposit (upload) files and register related metadata
+- delete - delete deposited record
+- publish - make public (publish) an already deposited record
+- curate (for community curators) - allow to accept/reject published records into a given community
+
+... to be continued
+
+---
 
 
 ## Requirements
