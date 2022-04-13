@@ -5,6 +5,7 @@ These command line scripts allow to execute a set of actions in bulk against the
 - `deposit` - deposit (upload) files and register related metadata
 - `delete`  - delete deposited record
 - `publish` - make public (publish) an already deposited record
+- `list`    - returns the list of depositions (draft | published )of the user
 - `curate`  - (for community curators) allow to accept/reject published records into a given community
 - `search`  - returns a list of records (in YAML format) that satisfy a set of given criteria
 
