@@ -75,6 +75,7 @@ req = requests.get(search_url, params=params)
 # headers=headers)
 print(req.request.url)
 results = req.json()['hits']['hits']
+total = req.json()['hits']['total']
 # print(results)
 depositions = []
 
@@ -89,10 +90,10 @@ for r in results:
 
     depositions.append(record)
     #record['files'][0]['url'] = r['files'][0]['links']['download']
-    print(yaml.dump(record))
+    print(yaml.dump(record, sort_keys=False))
 
 # print(yaml.dump(results))
-print(f"\nFound {len(results)} records")
+print(f"\nReturning {len(results)} of {total} records\n ")
 
 if len(results) > 0:
     fname = f"pending-requests-{args.community}.yaml"
@@ -102,7 +103,7 @@ if len(results) > 0:
             # The FullLoader parameter handles the conversion from YAML
             # scalar values to Python the dictionary format
 
-            out_file.write(yaml.dump(depositions))
+            out_file.write(yaml.dump(depositions, sort_keys=False))
 
             # yaml_path = os.path.dirname(file.name)
             # print("yaml_path", yaml_path)

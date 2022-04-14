@@ -95,7 +95,7 @@ if len(results) > 0:
             # The FullLoader parameter handles the conversion from YAML
             # scalar values to Python the dictionary format
 
-            out_file.write(yaml.dump(depositions))
+            out_file.write(yaml.dump(depositions, sort_keys=False))
 
             # yaml_path = os.path.dirname(file.name)
             # print("yaml_path", yaml_path)

@@ -180,7 +180,7 @@ for i in range(start_index, end_index + 1):
                 records[i]['created'] = resp['created']
                 records[i]['url'] = resp['links']['record_html']
 
-                out_file.write(yaml.dump(records))
+                out_file.write(yaml.dump(records, sort_keys=False))
         except:
             print("Cannot update ", yaml_file)
             exit(-1)

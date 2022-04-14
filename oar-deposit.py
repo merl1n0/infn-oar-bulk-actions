@@ -168,7 +168,7 @@ for i in range(start_index, end_index + 1):
                 deposit = {'id': resp['id'], 'title': resp['metadata']
                            ['title'], 'url': resp['links']['html'], 'reserved_doi': reserved_doi}
 
-                out_file.write(yaml.dump([deposit]))
+                out_file.write(yaml.dump([deposit], sort_keys=False))
 
                 # yaml_path = os.path.dirname(file.name)
                 # print("yaml_path", yaml_path)
