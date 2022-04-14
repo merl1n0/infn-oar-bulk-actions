@@ -82,7 +82,7 @@ for r in results:
 
     depositions.append(record)
     #record['files'][0]['url'] = r['files'][0]['links']['download']
-    print(yaml.dump(record))
+    print(yaml.dump(record, sort_keys=False))
 
 # print(yaml.dump(results))
 print(f"\nFound {len(results)} records")
