@@ -2,12 +2,13 @@
 
 These command line scripts allow to execute a set of actions in bulk against the [INFN Open Access Repository](https://www.openaccessrepository)  (or any [Zenodo](https://zenodo.org) based one) from a list of records stored in a [YAML](https://yaml.org) file. Currently the supported actions are:
 
-- `deposit` - deposit (upload) files and register related metadata
-- `delete`  - delete deposited record
-- `publish` - make public (publish) an already deposited record
-- `list`    - returns the list of depositions (draft | published )of the user
-- `curate`  - (for community curators) allow to accept/reject published records into a given community
-- `search`  - returns a list of records (in YAML format) that satisfy a set of given criteria
+- `deposit`       - deposit (upload) files and register related metadata
+- `delete`        - delete deposited record
+- `publish`       - make public (publish) an already deposited record
+- `list`          - returns the list of depositions (draft | published) of the user
+- `list-requests` - returns the list of pending requests for a given community
+- `curate`        - (for community curators) allow to accept/reject published records into a given community
+- `search`        - returns a list of records (in YAML format) that satisfy a set of given criteria
 
 ... to be continued
 
