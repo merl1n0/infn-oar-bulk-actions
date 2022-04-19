@@ -1,6 +1,6 @@
 # INFN OAR Bulk Actions
 
-These command line scripts allow to execute a set of actions in bulk against the [INFN Open Access Repository](https://www.openaccessrepository)  (or any [Zenodo](https://zenodo.org) based one) from a list of records stored in a [YAML](https://yaml.org) file. Currently the supported actions are:
+These command line scripts allow to execute a set of actions in bulk against the [INFN Open Access Repository](https://www.openaccessrepository)  (or any [Invenio](https://inveniosoftware.org) based one) from a list of records stored in a [YAML](https://yaml.org) file. Currently the supported actions are:
 
 - `deposit`       - deposit (upload) files and register related metadata
 - `delete`        - delete deposited record
