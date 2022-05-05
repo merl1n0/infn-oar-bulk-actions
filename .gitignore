@@ -4,5 +4,6 @@
 .env
 .DS_Store
 AF_1/
+pyenv
 
 .DS_Store

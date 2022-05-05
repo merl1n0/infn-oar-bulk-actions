@@ -11,9 +11,12 @@ from apiclient.http import MediaFileUpload, MediaIoBaseDownload
 
 try:
     import argparse
-    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
+    parser = argparse.ArgumentParser(parents=[tools.argparser])
+    parser.add_argument("path", help="folder path of the PDF files to OCR")
+    flags = parser.parse_args()
 except ImportError:
     flags = None
+
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/drive-python-quickstart.json
@@ -31,7 +34,8 @@ def get_credentials():
     Returns:
         Credentials, the obtained credential.
     """
-    credential_path = os.path.join("./", 'drive-python-quickstart.json')
+    # credential_path = os.path.join("./", 'drive-python-quickstart.json')
+    credential_path = "token.json"
     store = Storage(credential_path)
     credentials = store.get()
     if not credentials or credentials.invalid:
@@ -52,12 +56,20 @@ def main():
 
     # per eseguire OCR dei pdf in sequenza
     # esempio: da 1 a 24 (inclusi)  ---> range(1, 25)
-    x = range(29, 30) 
-    for n in x:
-        imgfile = './ADONE/AF_1/AF-'+str(n)+'.pdf'  # Image with texts (png, jpg, bmp, gif, pdf)
-        txtfile = './ADONE/output/AF_1/AF-'+str(n)+'.txt'  # Text file outputted by OCR
+    x = range(2, 3)
+
+    file_list = os.listdir(flags.path)
+    for file in file_list:
+        # Image with texts (png, jpg, bmp, gif, pdf)
+        if not file.endswith(".pdf"):
+            continue
+        imgfile = os.path.join(flags.path, file)
+        # Text file outputted by OCR
+        txtfile = os.path.join(flags.path, "output",
+                               file.replace("pdf", "txt"))
 
         mime = 'application/vnd.google-apps.document'
+        print(f"Uploading {imgfile} to Google Drive")
         res = service.files().create(
             body={
                 'name': imgfile,
@@ -66,16 +78,22 @@ def main():
             media_body=MediaFileUpload(imgfile, mimetype=mime, resumable=True)
         ).execute()
 
+        print(f"Converting and saving to {txtfile}")
+
+        if not os.path.isdir(os.path.join(flags.path, "output")):
+            os.mkdir(os.path.join(flags.path, "output"))
+
         downloader = MediaIoBaseDownload(
             io.FileIO(txtfile, 'wb'),
-            service.files().export_media(fileId=res['id'], mimeType="text/plain")
+            service.files().export_media(
+                fileId=res['id'], mimeType="text/plain")
         )
         done = False
         while done is False:
             status, done = downloader.next_chunk()
 
         service.files().delete(fileId=res['id']).execute()
-        print("Done.")
+        print("Done.\n")
 
 
 if __name__ == '__main__':
