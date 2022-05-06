@@ -33,7 +33,7 @@ if len(sys.argv) < 2:
 yaml_file = sys.argv[1]
 
 try:
-    with open(yaml_file) as file:
+    with open(yaml_file, encoding="utf-8") as file:
         # The FullLoader parameter handles the conversion from YAML
         # scalar values to Python the dictionary format
         records = yaml.load(file, Loader=yaml.FullLoader)
