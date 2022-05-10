@@ -42,6 +42,8 @@ try:
 
 except:
     print("Cannot read ", yaml_file)
+    e = sys.exc_info()
+    print(e)
     exit(-1)
 
 record_count = len(records)
@@ -92,7 +94,7 @@ for i in range(start_index, end_index + 1):
     filename += '_' + r['files'][0]['path'].replace('/', '_')
     filename = urllib.parse.quote(filename)
     # relative paths are built starting from the location of the YAML file
-    path = yaml_path + r['files'][0]['path']
+    path = yaml_path + '/' + r['files'][0]['path']
     print(f"Uploading '{r['title']}' as {filename}")
 
     # Check if file exists
