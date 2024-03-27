@@ -1,0 +1,21 @@
+---
+
+-
+  title: The German Grid Initiative: A Uniform Accounting Service in Multiple Middleware Environments
+  #file_name: HLRmon_DGrid.pdf
+  #file_name: urlencode(title).replace(" ", "-") + files[0]["path"]
+  description: "<p>Grid Economics and Business Models: 5th International Workshop, GECON 2008, Las Palmas de Gran Canaria, Spain, August 26, 2008. Proceedings 5</p>"
+  access_right: open
+  communities:
+   - identifier: infn
+  creators:
+  - name: Dal Pra, S.
+  keywords:
+  - HLRmon
+  - Accounting systems
+  language: eng
+  license: CC-BY-4.0
+  publication_date: '2008-08-26'
+  upload_type: dataset
+  files:
+  - path: ./HLRmon_DGrid.pdf
